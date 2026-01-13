@@ -4,8 +4,8 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/refresh")
-def refresh():
+@app.get("/")
+def run():
     try:
         subprocess.check_call([
             sys.executable,
