@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Job Gate</title>
+    <style>
+      body { font-family: system-ui, -apple-system, sans-serif; width: 300px; padding: 12px; }
+      h3 { margin: 6px 0 10px; }
+      label { display:block; font-size: 12px; opacity: .85; margin-top: 10px; }
+      input, select, button, textarea {
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 6px;
+        padding: 8px;
+        border-radius: 10px;
+        border: 1px solid rgba(0,0,0,.15);
+      }
+      button { cursor: pointer; border: none; background: #4da3ff; color: white; font-weight: 650; }
+      button.secondary { background: #444; }
+      textarea { height: 60px; font-size: 11px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+      .muted { opacity: .7; font-size: 12px; }
+      .hint { margin-top: 10px; font-size: 12px; opacity: .75; }
+      #status { margin-top: 10px; font-size: 12px; }
+      .row { display:flex; gap:10px; }
+      .row > div { flex:1; }
+      .inline { display:flex; align-items:center; gap:10px; margin-top:8px; }
+      .inline input[type="checkbox"] { width:auto; margin:0; }
+      .disabled { opacity:0.5; pointer-events:none; }
+    </style>
+  </head>
+  <body>
+    <h3>Job Gate</h3>
+    <div class="muted">No-server mode: run jobs.py → updates jobs.json → refresh here.</div>
+
+    <label>Jobs required to unlock</label>
+    <input id="requiredJobs" type="number" min="1" />
+
+    <label>YouTube minutes unlocked</label>
+    <input id="unlockMinutes" type="number" min="1" />
+
+    <label>Daily cap</label>
+    <div class="inline">
+      <input type="checkbox" id="dailyCapEnabled" />
+      <span>Enable daily cap</span>
+    </div>
+
+    <div class="row" id="capRow">
+      <div>
+        <label>Max jobs per day</label>
+        <input id="dailyCapMax" type="number" min="1" max="200" />
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <div class="muted" style="padding:8px 0;">(Optional)</div>
+      </div>
+    </div>
+
+    <button id="save">Save Settings</button>
+
+    <div class="hint">
+      If jobs still look old after running jobs.py, click Refresh below.
+      Worst case: reload the extension in chrome://extensions.
+    </div>
+
+    <button id="refreshJobs" class="secondary">Refresh Jobs (import jobs.json)</button>
+
+    <button id="copyCmd" class="secondary">Copy jobs.py command</button>
+    <textarea id="cmdBox" readonly></textarea>
+
+    <div id="status"></div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

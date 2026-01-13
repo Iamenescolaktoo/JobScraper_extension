@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Job Gate",
+  "version": "1.0",
+  "permissions": ["storage"],
+  "host_permissions": ["*://youtube.com/*", "*://*.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://youtube.com/*", "*://*.youtube.com/*"],
+      "js": [
+        "content/namespace.js",
+        "content/utils.js",
+        "content/storage.js",
+        "content/lock_ui.js",
+        "content/jobsprint_ui.js",
+        "content/main.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["jobs.json"],
+      "matches": ["*://youtube.com/*", "*://*.youtube.com/*"]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+	"query": "software intern",
+	"blocked_keywords": [
+	  "finance",
+	  "financial",
+	  "accounting",
+	  "marketing",
+	  "sales",
+	  "business development",
+	  "hr",
+	  "human resources",
+	  "operations",
+	  "supply chain",
+	  "analyst development program",
+	  "fp&a",
+	  "equity research",
+	  "investment banking",
+	  "planning intern",
+	  "brand",
+	  "commercial"
+	]
+  }
+  
