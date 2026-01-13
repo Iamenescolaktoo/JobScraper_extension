@@ -1,11 +1,8 @@
 import subprocess
 import sys
-from fastapi import FastAPI
+import json
 
-app = FastAPI()
-
-@app.get("/")
-def run():
+def handler(request):
     try:
         subprocess.check_call([
             sys.executable,
@@ -15,6 +12,22 @@ def run():
             "--hours", "72",
             "--limit", "40"
         ])
-        return {"status": "ok", "message": "jobs.json refreshed"}
+
+        return {
+            "statusCode": 200,
+            "headers": { "Content-Type": "application/json" },
+            "body": json.dumps({
+                "status": "ok",
+                "message": "jobs.json refreshed"
+            })
+        }
+
     except Exception as e:
-        return {"status": "error", "error": str(e)}
+        return {
+            "statusCode": 500,
+            "headers": { "Content-Type": "application/json" },
+            "body": json.dumps({
+                "status": "error",
+                "error": str(e)
+            })
+        }
